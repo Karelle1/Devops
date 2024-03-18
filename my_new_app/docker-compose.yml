@@ -1,0 +1,39 @@
+version: '3'
+services:
+  web:
+    build: ./web
+    ports:
+      - "8080:8080"
+    depends_on:
+      - api
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'   # Restrict to half a CPU core
+          memory: 500M  # Limit to 512MB of RAM
+  api:
+    build: ./api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'   # Restrict to half a CPU core
+          memory: 512M  # Limit to 512MB of RAM
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: my_database
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    deploy:
+      resources:
+        limits:
+          cpus: '1'     # Restrict to one CPU core
+          memory: 1G    # Limit to 1GB of RAM
