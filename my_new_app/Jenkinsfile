@@ -1,5 +1,5 @@
 pipeline {
-agent { label  name 'karelle-agent' } 
+agent { label  name 'km-jenkins-agent' } 
 
 stage ('Build') {echo 'building...'}
 }
