@@ -1,4 +1,5 @@
-pipeline
-agent { label  name 'karelle-agent'  }
+pipeline {
+agent { label  name 'karelle-agent' } 
 
-stage ('Build') {}
+stage ('Build') {echo 'building...'}
+}
