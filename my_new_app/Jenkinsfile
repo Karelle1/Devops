@@ -1,0 +1,4 @@
+pipeline
+agent { label  name 'karelle-agent'  }
+
+stage ('Build') {}
