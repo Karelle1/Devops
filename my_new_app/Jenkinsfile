@@ -3,7 +3,7 @@ pipeline {
         label 'km-jenkins-agent'
     }
     environment {
-        APP_NAME = 'my_new_app'
+        APP_NAME = my_new_app
         RELEASE = '1.0.0'
         DOCKER_USER = 'karelle1'
         DOCKER_PASS = 'Docker'
