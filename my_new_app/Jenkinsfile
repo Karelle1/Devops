@@ -2,10 +2,31 @@ pipeline {
     agent {
         label 'km-jenkins-agent'
     }
+    environment {
+        APP_NAME = 'my-new-app'
+        RELEASE = '1.0.0'
+        DOCKER_USER = 'karelle1'
+        DOCKER_PASS = 'Docker'
+        IMAGE_NAME = '${DOCKER_USER} + '/' + '{APP_NAME}'
+        IMAG_TAG = '${RELEASE}-{BUILD_NUMBER}'
+    }
     stages {
         stage('Build') {
             steps {
                 echo 'Building...'
+            }
+        }
+        stage ('Build & Push Docker Image') {
+            steps {
+                script {
+                    docker.withRegistry('',DOCKER_PASS) {
+                        docker_image = docker.build '${IMAGE_NAME}'
+                    }
+                    docker.withRegistry('',DOCKER_PASS) {
+                        docker_image.push('${IMAGE_TAG}')
+                        docker_image.push('latest')
+                    }
+                }
             }
         }
     }
