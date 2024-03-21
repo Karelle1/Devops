@@ -3,11 +3,6 @@ pipeline {
         label 'km-jenkins-agent'
     }
     stages {
-        stage('Checkout from SCM') {
-                steps {
-                    git branch: 'main', credentialsId: 'Github', url: 'https://github.com/Karelle1/Devops/tree/main/my_new_app'
-                }
-            
         stage('Build') {
             steps {
                 echo 'Building...'
