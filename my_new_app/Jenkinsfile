@@ -8,7 +8,7 @@ pipeline {
         DOCKER_USER = 'karelle1'
         DOCKER_PASS = 'Docker'
         IMAGE_NAME = 'my_new_app' 
-        IMAG_TAG = '${RELEASE}-{BUILD_NUMBER}'
+        IMAG_TAG = '${RELEASE}-${BUILD_NUMBER}'
     }
     stages {
         stage('Build') {
